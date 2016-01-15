@@ -18,5 +18,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="module" module-name="framework" />
     <orderEntry type="library" exported="" name="Gradle: xtrac-framework:framework:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cds:cds-pricing-library:1.0-SNAPSHOT" level="project" />
   </component>
 </module>

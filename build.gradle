@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    compile group:'cds', name: 'cds-pricing-library', version: '1.0-SNAPSHOT'
     compile group:'xtrac-framework', name: 'framework', version: '1.0-SNAPSHOT'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
