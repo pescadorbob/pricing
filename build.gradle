@@ -1,8 +1,10 @@
 apply plugin: 'java'
 
+
 sourceCompatibility = 1.8
 group = 'xtrac-framework'
 version = '1.0-SNAPSHOT'
+def cdsVersion = readCDSVersion('1.0-SNAPSHOT','go/version.properties')
 
 repositories {
     mavenLocal()
@@ -10,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    compile group:'cds', name: 'cds-pricing-library', version: '1.0-SNAPSHOT'
+    compile group:'cds', name: 'cds-pricing-library', version: cdsVersion
     compile group:'xtrac-framework', name: 'framework', version: '1.0-SNAPSHOT'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
@@ -24,3 +26,30 @@ publishing {
         }
     }
 }
+
+
+String readCDSVersion(defaultVersion,versionFileName) {
+    logger.quiet 'Reading the version file.'
+    def versionFile = file(versionFileName)
+
+    String cdsVersion = "1.0-SNAPSHOT"
+    if (!versionFile.exists()) {
+        println "Defaulting to snapshot ${cdsVersion}"
+
+    }else {
+
+        Properties versionProps = new Properties()
+
+        versionFile.withInputStream { stream ->
+            versionProps.load(stream)
+        }
+
+        cdsVersion = versionProps.cdsVersion
+    }
+    cdsVersion
+}
+
+task printCDSVersion << {
+    logger.quiet "Version: $cdsVersion"
+}
+
